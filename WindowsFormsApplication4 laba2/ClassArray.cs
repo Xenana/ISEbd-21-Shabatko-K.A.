@@ -10,26 +10,26 @@ namespace WindowsFormsApplication4
     {
         private Dictionary<int, T> places;
         private int maxCount;
-
+       
         private T defaultValue;
         public ClassArray(int size, T defVal)
         {
             defaultValue = defVal;
-            places = new Dictionary<int, T>();
+            places = new Dictionary<int,T>();
             maxCount = size;
         }
-
+        
         public static int operator +(ClassArray<T> p, T plane)
         {
             if (p.places.Count == p.maxCount)
             {
                 return -1;
             }
-            for (int i = 0; i < p.places.Count; i++)
+            for (int i=0; i<p.places.Count; i++)
             {
                 if (p.CheckFreePlace(i))
                 {
-                    p.places.Add(i, plane);
+                    p.places.Add(i,plane);
                     return i;
                 }
             }
@@ -48,7 +48,7 @@ namespace WindowsFormsApplication4
         }
         private bool CheckFreePlace(int index)
         {
-
+            
             return !places.ContainsKey(index);
         }
         public T this[int ind]
@@ -61,7 +61,7 @@ namespace WindowsFormsApplication4
                 }
                 return defaultValue;
             }
-        }
+        } 
 
     }
 }

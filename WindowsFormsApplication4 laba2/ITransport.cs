@@ -20,5 +20,7 @@ namespace WindowsFormsApplication4
         int getPassenger();
 
         void setMainColor(Color color);
+
+        string getInfo();
     }
 }

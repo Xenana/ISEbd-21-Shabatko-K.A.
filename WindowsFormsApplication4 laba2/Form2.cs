@@ -107,7 +107,7 @@ namespace WindowsFormsApplication4
 
         private void Left_Click(object sender, EventArgs e)
         {
-            
+           
             aerodrome.LevelDown();
             Levels.SelectedIndex = aerodrome.getCurrentLevel;
             Draw();
@@ -124,8 +124,8 @@ namespace WindowsFormsApplication4
             form = new Form3();
             form.AddEvent(AddCar);
             form.Show();
-
-
+           
+            
         }
         private void AddCar(ITransport plane)
         {
@@ -141,6 +141,42 @@ namespace WindowsFormsApplication4
                 {
                     MessageBox.Show("Машину не удалось поставить");
                 }
+            }
+        }
+
+        private void файлToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (aerodrome.SaveData(saveFileDialog1.FileName))
+                {
+                    MessageBox.Show("Сохранение прошло успешно", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не сохранилось", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (aerodrome.LoadData(openFileDialog1.FileName))
+                {
+                    MessageBox.Show("Загрузили", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Не загрузили", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Draw();
             }
         }
     }
