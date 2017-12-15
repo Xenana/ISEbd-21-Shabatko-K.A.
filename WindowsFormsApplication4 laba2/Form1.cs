@@ -31,9 +31,9 @@ namespace WindowsFormsApplication4
             button_color2.BackColor = dopColor;
 
         }
+        
 
-
-
+        
 
         private bool checkFields()
         {
@@ -52,13 +52,13 @@ namespace WindowsFormsApplication4
             return true;
         }
 
+        
 
+        
 
+        
 
-
-
-
-
+        
 
 
         private void label1_Click(object sender, EventArgs e)
@@ -113,30 +113,11 @@ namespace WindowsFormsApplication4
 
         private void light_plane_Click_1(object sender, EventArgs e)
         {
-            if ((engines.Checked) || (strips.Checked))
-            {
-                bool en = false;
-                bool str = false;
-
-                if (engines.Checked)
-                {
-                    en = true;
-                }
-
-                if (strips.Checked)
-                {
-                    str = true;
-                }
-
-
-                inter = new LightPlane(300, 6, 2000, color, en, str, dopColor);
-                Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-                Graphics gr = Graphics.FromImage(bmp);
-                inter.drawPlane(gr);
-                pictureBox1.Image = bmp;
-
-            }
-
+            inter = new LightPlane(300, 6, 2000, color, true, true, dopColor);
+            Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            Graphics gr = Graphics.FromImage(bmp);
+            inter.drawPlane(gr);
+            pictureBox1.Image = bmp;
         }
 
         private void button_move_Click(object sender, EventArgs e)
@@ -148,11 +129,6 @@ namespace WindowsFormsApplication4
                 inter.flyPlane(gr);
                 pictureBox1.Image = bmp;
             }
-        }
-
-        private void engines_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
