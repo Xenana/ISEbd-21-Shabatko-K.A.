@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -37,8 +38,10 @@ namespace WindowsFormsApplication4
                 eventAddPlane += ev;
             }
         }
+        private Logger log;
         public Form3()
         {
+            log = LogManager.GetCurrentClassLogger();
             InitializeComponent();
             panelBlack.MouseDown += panelColor_MouseDown;
             panelGreen.MouseDown += panelColor_MouseDown;
@@ -56,6 +59,7 @@ namespace WindowsFormsApplication4
         private void labelPlane_MouseDown(object sender, MouseEventArgs e)
         {
             labelPlane.DoDragDrop(labelPlane.Text, DragDropEffects.Move | DragDropEffects.Copy);
+            log.Info("Самолет перетаскивается");
         }
 
         private void labelPlane_Click(object sender, EventArgs e)
@@ -69,12 +73,16 @@ namespace WindowsFormsApplication4
             {
                 case "Самолет":
                     plane = new Plane(100, 4, 1000, Color.White);
+                    log.Info("Выбран самолет");
                     break;
                 case "Легкий самолет":
                     plane = new LightPlane(300, 6, 2000, Color.White, true, true, Color.Black);
+                    log.Info("Выбран легкий самолет");
                     break;
             }
             DrawPlane();
+
+
         }
 
         private void panelPlane_DragEnter(object sender, DragEventArgs e)
@@ -103,6 +111,7 @@ namespace WindowsFormsApplication4
             if (plane != null)
             {
                 plane.setMainColor((Color)e.Data.GetData(typeof(Color)));
+                log.Info("Выбран основной цвет");
                 DrawPlane();
             }
         }
@@ -110,6 +119,7 @@ namespace WindowsFormsApplication4
         {
             (sender as Control).DoDragDrop((sender as Control).BackColor,
             DragDropEffects.Move | DragDropEffects.Copy);
+            log.Info("Цвет перетаскивается");
         }
 
 
@@ -118,6 +128,8 @@ namespace WindowsFormsApplication4
             if (eventAddPlane != null)
             {
                 eventAddPlane(plane);
+                log.Info("Cамолет добавлен на аэродром");
+
             }
             Close();
         }
@@ -125,6 +137,7 @@ namespace WindowsFormsApplication4
         private void labelLightPlane_MouseDown(object sender, MouseEventArgs e)
         {
             labelLightPlane.DoDragDrop(labelLightPlane.Text, DragDropEffects.Move | DragDropEffects.Copy);
+            log.Info("Легкий самолет перетаскивается");
         }
 
         private void DopColor_DragDrop(object sender, DragEventArgs e)
@@ -135,6 +148,7 @@ namespace WindowsFormsApplication4
                 {
                     (plane as LightPlane).setDopColor((Color)e.Data.GetData(typeof(Color)));
                     DrawPlane();
+                    log.Info("Выбран дополнительный цвет");
 
                 }
             }
@@ -146,6 +160,11 @@ namespace WindowsFormsApplication4
                 e.Effect = DragDropEffects.Copy;
             else
                 e.Effect = DragDropEffects.None;
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            log.Info("Отмена");
         }
     }
 }
