@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,19 +17,26 @@ namespace WindowsFormsApplication4
         public Form2()
         {
             InitializeComponent();
-            aerodrome = new Aerodrome();
+            aerodrome = new Aerodrome(5);
+            for (int i = 1; i < 6; i++)
+            {
+                Levels.Items.Add("Уровень " + i);
+            }
+            Levels.SelectedIndex = aerodrome.getCurrentLevel;
             Draw();
-
         }
         ///<summary>
         /// Метод для отрисовки парковки
         ///</summary>
         private void Draw()
         {
-            Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-            Graphics gr = Graphics.FromImage(bmp);
-            aerodrome.Draw(gr, pictureBox1.Width, pictureBox1.Height);
-            pictureBox1.Image = bmp;
+            if (Levels.SelectedIndex > -1)
+            {
+                Bitmap bmp = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+                Graphics gr = Graphics.FromImage(bmp);
+                aerodrome.Draw(gr);
+                pictureBox1.Image = bmp;
+            }
         }
 
 
@@ -64,19 +72,50 @@ namespace WindowsFormsApplication4
 
         private void buttonGet_Click(object sender, EventArgs e)
         {
-            if (maskedTextBox1.Text != "")
+            if (Levels.SelectedIndex > -1)
             {
-                var plane = aerodrome.GetPlaneInParking(Convert.ToInt32(maskedTextBox1.Text));
+                string level = Levels.Items[Levels.SelectedIndex].ToString();
 
-                Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
-                Graphics gr = Graphics.FromImage(bmp);
-                plane.setPosition(5, 25);
-                plane.drawPlane(gr);
-                pictureBox2.Image = bmp;
-                Draw();
+                if (maskedTextBox1.Text != "")
+                {
+                    ITransport plane = aerodrome.GetPlaneInParking(Convert.ToInt32(maskedTextBox1.Text));
+                    if (plane != null)
+                    {
+                        Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
+                        Graphics gr = Graphics.FromImage(bmp);
+                        plane.setPosition(5, 5);
+                        plane.drawPlane(gr);
+                        pictureBox2.Image = bmp;
+                        Draw();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Извинте, на этом месте нет машины");
+                    }
+
+                }
             }
         }
 
+        private void Right_Click(object sender, EventArgs e)
+        {
+            aerodrome.LevelDown();
+            Levels.SelectedIndex = aerodrome.getCurrentLevel;
+            Draw();
+        }
+
+        private void Left_Click(object sender, EventArgs e)
+        {
+            aerodrome.LevelUp();
+            Levels.SelectedIndex = aerodrome.getCurrentLevel;
+            Draw();
+
+        }
+
+        private void Levels_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
