@@ -58,14 +58,16 @@ C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 lab
 C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba5\obj\Debug\WindowsFormsApplication4.Form3.resources
 C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba5\obj\Debug\WindowsFormsApplication4.Properties.Resources.resources
 C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba5\obj\Debug\WindowsFormsApplication4.csproj.GenerateResource.Cache
-C:\Users\user\Desktop\WindowsFormsApplication4 laba6\bin\Debug\WindowsFormsApplication4.exe.config
-C:\Users\user\Desktop\WindowsFormsApplication4 laba6\obj\Debug\WindowsFormsApplication4.exe
-C:\Users\user\Desktop\WindowsFormsApplication4 laba6\obj\Debug\WindowsFormsApplication4.pdb
-C:\Users\user\Desktop\WindowsFormsApplication4 laba6\bin\Debug\WindowsFormsApplication4.exe
-C:\Users\user\Desktop\WindowsFormsApplication4 laba6\bin\Debug\WindowsFormsApplication4.pdb
-C:\Users\user\Desktop\WindowsFormsApplication4 laba6\obj\Debug\WindowsFormsApplication4.csprojResolveAssemblyReference.cache
-C:\Users\user\Desktop\WindowsFormsApplication4 laba6\obj\Debug\WindowsFormsApplication4.Form1.resources
-C:\Users\user\Desktop\WindowsFormsApplication4 laba6\obj\Debug\WindowsFormsApplication4.Form2.resources
-C:\Users\user\Desktop\WindowsFormsApplication4 laba6\obj\Debug\WindowsFormsApplication4.Form3.resources
-C:\Users\user\Desktop\WindowsFormsApplication4 laba6\obj\Debug\WindowsFormsApplication4.Properties.Resources.resources
-C:\Users\user\Desktop\WindowsFormsApplication4 laba6\obj\Debug\WindowsFormsApplication4.csproj.GenerateResource.Cache
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\bin\Debug\WindowsFormsApplication4.exe.config
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\obj\Debug\WindowsFormsApplication4.exe
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\obj\Debug\WindowsFormsApplication4.pdb
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\bin\Debug\WindowsFormsApplication4.exe
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\bin\Debug\WindowsFormsApplication4.pdb
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\bin\Debug\NLog.dll
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\bin\Debug\NLog.xml
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\obj\Debug\WindowsFormsApplication4.csprojResolveAssemblyReference.cache
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\obj\Debug\WindowsFormsApplication4.Form1.resources
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\obj\Debug\WindowsFormsApplication4.Form2.resources
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\obj\Debug\WindowsFormsApplication4.Form3.resources
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\obj\Debug\WindowsFormsApplication4.Properties.Resources.resources
+C:\Users\user\Documents\Visual Studio 2015\Projects\WindowsFormsApplication4 laba7\obj\Debug\WindowsFormsApplication4.csproj.GenerateResource.Cache

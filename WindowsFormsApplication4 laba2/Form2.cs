@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +16,11 @@ namespace WindowsFormsApplication4
     {
         Aerodrome aerodrome;
         Form3 form;
+        private Logger log;
         public Form2()
         {
             InitializeComponent();
+            log = LogManager.GetCurrentClassLogger();
             aerodrome = new Aerodrome(5);
             for (int i = 1; i < 6; i++)
             {
@@ -48,6 +51,7 @@ namespace WindowsFormsApplication4
             {
                 var plane = new Plane(100, 4, 1000, dialog.Color);
                 int place = aerodrome.PutPlaneInParking(plane);
+                log.Info("Припаркован самолет");
                 Draw();
                 MessageBox.Show("Ваше место: " + place);
             }
@@ -64,6 +68,7 @@ namespace WindowsFormsApplication4
                 {
                     var plane = new LightPlane(300, 6, 2000, dialog.Color, true, true, dialogDop.Color);
                     int place = aerodrome.PutPlaneInParking(plane);
+                    log.Info("Припаркован легкий самолет");
                     Draw();
                     MessageBox.Show("Ваше место: " + place);
                 }
@@ -79,19 +84,24 @@ namespace WindowsFormsApplication4
 
                 if (maskedTextBox1.Text != "")
                 {
-                    ITransport plane = aerodrome.GetPlaneInParking(Convert.ToInt32(maskedTextBox1.Text));
-                    if (plane != null)
+                    try
                     {
+                        ITransport plane = aerodrome.GetPlaneInParking(Convert.ToInt32(maskedTextBox1.Text));
                         Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
                         Graphics gr = Graphics.FromImage(bmp);
                         plane.setPosition(15, 40);
                         plane.drawPlane(gr);
                         pictureBox2.Image = bmp;
+                        log.Info("Самолет забрали");
                         Draw();
                     }
-                    else
+                    catch (AerodromeIndexOutOfRangeException ex)
                     {
-                        MessageBox.Show("Извинте, на этом месте нет машины");
+                        MessageBox.Show(ex.Message, "Неверный номер", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Общая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                 }
@@ -102,16 +112,16 @@ namespace WindowsFormsApplication4
         {
             aerodrome.LevelUp();
             Levels.SelectedIndex = aerodrome.getCurrentLevel;
+            log.Info("Переход на уровень выше Текущий уровень: " + aerodrome.getCurrentLevel);
             Draw();
         }
 
         private void Left_Click(object sender, EventArgs e)
         {
-           
             aerodrome.LevelDown();
             Levels.SelectedIndex = aerodrome.getCurrentLevel;
+            log.Info("Переход на уровень ниже Текущий уровень: " + aerodrome.getCurrentLevel);
             Draw();
-
         }
 
         private void Levels_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,22 +134,27 @@ namespace WindowsFormsApplication4
             form = new Form3();
             form.AddEvent(AddCar);
             form.Show();
-           
-            
+            log.Info("Открытие формы");
+
+
         }
         private void AddCar(ITransport plane)
         {
             if (plane != null)
             {
-                int place = aerodrome.PutPlaneInParking(plane);
-                if (place > -1)
+                try
                 {
+                    int place = aerodrome.PutPlaneInParking(plane);
                     Draw();
                     MessageBox.Show("Ваше место: " + place);
                 }
-                else
+                catch(AerodromeOverflowException ex)
                 {
-                    MessageBox.Show("Машину не удалось поставить");
+                    MessageBox.Show(ex.Message, "Ошибка переполнения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Общая ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -152,14 +167,17 @@ namespace WindowsFormsApplication4
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                log.Info("Попытка сохранения");
             {
                 if (aerodrome.SaveData(saveFileDialog1.FileName))
                 {
                     MessageBox.Show("Сохранение прошло успешно", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    log.Info("Файл сохранен");
                 }
                 else
                 {
                     MessageBox.Show("Не сохранилось", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    log.Info("Файл не сохранен");
                 }
             }
         }
@@ -167,14 +185,17 @@ namespace WindowsFormsApplication4
         private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                log.Info("Попытка загрузки");
             {
                 if (aerodrome.LoadData(openFileDialog1.FileName))
                 {
                     MessageBox.Show("Загрузили", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    log.Info("Файл загружен");
                 }
                 else
                 {
                     MessageBox.Show("Не загрузили", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    log.Info("Файл не загружен");
                 }
                 Draw();
             }

@@ -16,14 +16,14 @@ namespace WindowsFormsApplication4
         {
             defaultValue = defVal;
             places = new Dictionary<int,T>();
-            maxCount = size;
+            maxCount = 20;
         }
         
         public static int operator +(ClassArray<T> p, T plane)
         {
             if (p.places.Count == p.maxCount)
             {
-                return -1;
+                throw new AerodromeOverflowException();
             }
             for (int i=0; i<p.places.Count; i++)
             {
@@ -44,7 +44,7 @@ namespace WindowsFormsApplication4
                 p.places.Remove(index);
                 return plane;
             }
-            return p.defaultValue;
+            throw new AerodromeIndexOutOfRangeException();
         }
         private bool CheckFreePlace(int index)
         {
