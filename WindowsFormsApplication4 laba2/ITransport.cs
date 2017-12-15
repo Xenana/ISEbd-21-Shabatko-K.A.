@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication4
 {
-    interface ITransport
+    public interface ITransport
     {
         void flyPlane(Graphics g);
 
@@ -18,5 +18,7 @@ namespace WindowsFormsApplication4
         void loadPassenger(int count);
 
         int getPassenger();
+
+        void setMainColor(Color color);
     }
 }

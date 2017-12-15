@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.buttonParkingPlane = new System.Windows.Forms.Button();
-            this.buttonParkingLightPlane = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -42,6 +40,7 @@
             this.Right = new System.Windows.Forms.Button();
             this.Levels = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -54,26 +53,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(820, 472);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // buttonParkingPlane
-            // 
-            this.buttonParkingPlane.Location = new System.Drawing.Point(838, 211);
-            this.buttonParkingPlane.Name = "buttonParkingPlane";
-            this.buttonParkingPlane.Size = new System.Drawing.Size(208, 31);
-            this.buttonParkingPlane.TabIndex = 1;
-            this.buttonParkingPlane.Text = "Припарковать самолет";
-            this.buttonParkingPlane.UseVisualStyleBackColor = true;
-            this.buttonParkingPlane.Click += new System.EventHandler(this.buttonParkingPlane_Click);
-            // 
-            // buttonParkingLightPlane
-            // 
-            this.buttonParkingLightPlane.Location = new System.Drawing.Point(838, 248);
-            this.buttonParkingLightPlane.Name = "buttonParkingLightPlane";
-            this.buttonParkingLightPlane.Size = new System.Drawing.Size(208, 30);
-            this.buttonParkingLightPlane.TabIndex = 2;
-            this.buttonParkingLightPlane.Text = "Припарковать легкий самолет";
-            this.buttonParkingLightPlane.UseVisualStyleBackColor = true;
-            this.buttonParkingLightPlane.Click += new System.EventHandler(this.buttonParkingLightPlane_Click);
             // 
             // label1
             // 
@@ -177,11 +156,22 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Уровни:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(870, 224);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(152, 41);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Заказать самолет";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 531);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.Levels);
             this.Controls.Add(this.Right);
@@ -189,8 +179,6 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonParkingLightPlane);
-            this.Controls.Add(this.buttonParkingPlane);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form2";
             this.Text = "Form2";
@@ -206,8 +194,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button buttonParkingPlane;
-        private System.Windows.Forms.Button buttonParkingLightPlane;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -219,5 +205,6 @@
         private System.Windows.Forms.Button Right;
         private System.Windows.Forms.ListBox Levels;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
     }
 }

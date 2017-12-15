@@ -54,5 +54,9 @@ namespace WindowsFormsApplication4
             base.drawPlanee(g);
 
         }
+        public void setDopColor(Color color)
+        {
+            dopColor = color;
+        }
     }
 }
