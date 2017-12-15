@@ -14,6 +14,7 @@ namespace WindowsFormsApplication4
     public partial class Form2 : Form
     {
         Aerodrome aerodrome;
+        Form3 form;
         public Form2()
         {
             InitializeComponent();
@@ -83,7 +84,7 @@ namespace WindowsFormsApplication4
                     {
                         Bitmap bmp = new Bitmap(pictureBox2.Width, pictureBox2.Height);
                         Graphics gr = Graphics.FromImage(bmp);
-                        plane.setPosition(5, 5);
+                        plane.setPosition(15, 40);
                         plane.drawPlane(gr);
                         pictureBox2.Image = bmp;
                         Draw();
@@ -99,14 +100,15 @@ namespace WindowsFormsApplication4
 
         private void Right_Click(object sender, EventArgs e)
         {
-            aerodrome.LevelDown();
+            aerodrome.LevelUp();
             Levels.SelectedIndex = aerodrome.getCurrentLevel;
             Draw();
         }
 
         private void Left_Click(object sender, EventArgs e)
         {
-            aerodrome.LevelUp();
+            
+            aerodrome.LevelDown();
             Levels.SelectedIndex = aerodrome.getCurrentLevel;
             Draw();
 
@@ -115,6 +117,31 @@ namespace WindowsFormsApplication4
         private void Levels_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            form = new Form3();
+            form.AddEvent(AddCar);
+            form.Show();
+
+
+        }
+        private void AddCar(ITransport plane)
+        {
+            if (plane != null)
+            {
+                int place = aerodrome.PutPlaneInParking(plane);
+                if (place > -1)
+                {
+                    Draw();
+                    MessageBox.Show("Ваше место: " + place);
+                }
+                else
+                {
+                    MessageBox.Show("Машину не удалось поставить");
+                }
+            }
         }
     }
 }
