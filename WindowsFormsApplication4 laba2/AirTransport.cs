@@ -40,5 +40,6 @@ namespace WindowsFormsApplication4
         {
             ColorBody = color;
         }
+        public abstract string getInfo(); 
     }
 }

@@ -52,7 +52,7 @@ namespace WindowsFormsApplication4
             buttonCancel.Click += (object sender, EventArgs e) => { Close(); };
         }
 
-        
+
         private void labelPlane_MouseDown(object sender, MouseEventArgs e)
         {
             labelPlane.DoDragDrop(labelPlane.Text, DragDropEffects.Move | DragDropEffects.Copy);
@@ -85,7 +85,10 @@ namespace WindowsFormsApplication4
                 e.Effect = DragDropEffects.None;
         }
 
+        private void Form3_Load(object sender, EventArgs e)
+        {
 
+        }
 
         private void BaseColor_DragEnter(object sender, DragEventArgs e)
         {
@@ -143,11 +146,6 @@ namespace WindowsFormsApplication4
                 e.Effect = DragDropEffects.Copy;
             else
                 e.Effect = DragDropEffects.None;
-        }
-
-        private void buttonCancel_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

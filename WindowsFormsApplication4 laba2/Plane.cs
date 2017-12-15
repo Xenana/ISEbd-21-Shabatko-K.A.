@@ -75,6 +75,21 @@ namespace WindowsFormsApplication4
             startPosX = rand.Next(10, 200);
             startPosY = rand.Next(10, 200);
         }
+        public Plane(string info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 4)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                MaxCountPassengers = Convert.ToInt32(strs[1]);
+                Weight = Convert.ToInt32(strs[2]);
+                ColorBody = Color.FromName(strs[3]);
+            }
+            this.countPassengers = 0;
+            Random rand = new Random();
+            startPosX = rand.Next(10, 200);
+            startPosY = rand.Next(10, 200);
+        }
         public override void flyPlane(Graphics g)
         {
             startPosX -=
@@ -88,20 +103,24 @@ namespace WindowsFormsApplication4
         }
         protected virtual void drawPlanee(Graphics g)
         {
-
+            //границы самолета
             Pen pen = new Pen(Color.Black);
             g.DrawEllipse(pen, startPosX, startPosY, 100, 20);
             g.DrawLine(pen, startPosX + 25, startPosY, startPosX + 50, startPosY - 25);
             g.DrawLine(pen, startPosX + 50, startPosY - 25, startPosX + 50, startPosY);
-            g.DrawLine(pen, startPosX + 25, startPosY + 10, startPosX + 40, startPosY + 25);
-            g.DrawLine(pen, startPosX + 40, startPosY + 25, startPosX + 50, startPosY + 10);
-            g.DrawLine(pen, startPosX + 75, startPosY, startPosX + 90, startPosY - 25);
+            g.DrawLine(pen, startPosX + 25, startPosY+10, startPosX + 40, startPosY + 25);
+            g.DrawLine(pen, startPosX + 40, startPosY + 25, startPosX + 50, startPosY+10);
+            g.DrawLine(pen, startPosX + 75, startPosY, startPosX + 90, startPosY-25);
             g.DrawLine(pen, startPosX + 90, startPosY - 25, startPosX + 110, startPosY - 25);
             g.DrawLine(pen, startPosX + 110, startPosY - 25, startPosX + 90, startPosY);
-
-
+            
+            //фюзеляж
             Brush br = new SolidBrush(ColorBody);
             g.FillEllipse(br, startPosX, startPosY, 100, 20);
+        }
+        public override string getInfo()
+        {
+            return MaxSpeed + ";" + MaxCountPassengers + ";" + Weight + ";" + ColorBody.Name;
         }
     }
 }
