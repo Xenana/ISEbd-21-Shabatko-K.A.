@@ -51,16 +51,19 @@ namespace WindowsFormsApplication4
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i=0; i<countPlaces; i++)
+            int i = 0;
+            foreach (var plane in parkingStages[currentLevel])
             {
-                var plane = parkingStages[currentLevel][i];
-                if (plane != null)
-                {
-                    plane.setPosition(5 + i / 5 * placeSizeWidth + 5, i % 5 * placeSizeHeight + 35);
-                    plane.drawPlane(g);
-                }
+                plane.setPosition(5 + i / 5 * placeSizeWidth + 5, i % 5 * placeSizeHeight + 35);
+                plane.drawPlane(g);
+                i++;
             }
+         }
+        public void Sort()
+        {
+            parkingStages.Sort();
         }
+        
         private void DrawMarking(Graphics g)
         {
             Pen pen = new Pen(Color.Black, 3);
