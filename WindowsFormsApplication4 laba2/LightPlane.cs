@@ -7,8 +7,78 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication4
 {
-    class LightPlane : Plane
+    public class LightPlane : Plane, IComparable<LightPlane>, IEquatable<Plane>
     {
+        public int CompareTo(LightPlane other)
+        {
+            var res = (this is Plane).CompareTo(other is Plane);
+            if (res != 0)
+            {
+                return res;
+            }
+            if (Strips != other.Strips)
+            {
+                return Strips.CompareTo(other.Strips);
+            }
+            if (Engines != other.Engines)
+            {
+                return Engines.CompareTo(other.Engines);
+            }
+            if (dopColor != other.dopColor)
+            {
+                dopColor.Name.CompareTo(other.dopColor.Name);
+            }
+            if (ColorBody != other.ColorBody)
+            {
+                ColorBody.Name.CompareTo(other.ColorBody.Name);
+            }
+            return 0;
+        }
+        public bool Equals(LightPlane other)
+        {
+            var res = (this is Plane).Equals(other is Plane);
+            if (!res)
+            {
+                return res;
+            }
+            if (Strips != other.Strips)
+            {
+                return false;
+            }
+            if (Engines != other.Engines)
+            {
+                return false;
+            }
+            if (dopColor != other.dopColor)
+            {
+                return false;
+            }
+            if (ColorBody != other.ColorBody)
+            {
+                return false;
+            }
+            return true;
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            LightPlane planeObj = obj as LightPlane;
+            if (planeObj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(planeObj);
+            }
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
         private bool Strips;
         private bool Engines;
         private Color dopColor;
