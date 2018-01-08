@@ -1,0 +1,8 @@
+C:\Users\user\Desktop\lab1_var24_C\lab1_var24_C\bin\Debug\lab1_var24_C.exe.config
+C:\Users\user\Desktop\lab1_var24_C\lab1_var24_C\bin\Debug\lab1_var24_C.exe
+C:\Users\user\Desktop\lab1_var24_C\lab1_var24_C\bin\Debug\lab1_var24_C.pdb
+C:\Users\user\Desktop\lab1_var24_C\lab1_var24_C\obj\Debug\laba1.Form1.resources
+C:\Users\user\Desktop\lab1_var24_C\lab1_var24_C\obj\Debug\lab1_var24_C.Properties.Resources.resources
+C:\Users\user\Desktop\lab1_var24_C\lab1_var24_C\obj\Debug\laba1.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\lab1_var24_C\lab1_var24_C\obj\Debug\lab1_var24_C.exe
+C:\Users\user\Desktop\lab1_var24_C\lab1_var24_C\obj\Debug\lab1_var24_C.pdb
