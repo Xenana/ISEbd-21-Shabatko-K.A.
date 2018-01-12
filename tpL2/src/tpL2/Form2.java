@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -35,6 +36,7 @@ public class Form2 {
 	Aerodrome aerodrome;
 
 	private JTextField Number;
+	private String[] elements = new String[6];
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -57,13 +59,16 @@ public class Form2 {
 		maxSpeed = 300;
 		maxCountPass = 6;
 		weight = 2000;
-		aerodrome = new Aerodrome();
+		aerodrome = new Aerodrome(5);
 		initialize();
+		for(int i=0; i<6; i++){
+			elements[i]="Уровень" + (i+1);
+		}
 	}
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 670, 479);
+		frame.setBounds(100, 100, 670, 480);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -89,7 +94,7 @@ public class Form2 {
 
 			}
 		});
-		SetPlane.setBounds(456, 40, 125, 23);
+		SetPlane.setBounds(513, 170, 136, 23);
 		frame.getContentPane().add(SetPlane);
 
 		JButton SetLightPlane = new JButton("\u041B\u0435\u0433\u043A\u0438\u0439 \u0441\u0430\u043C\u043E\u043B\u0435\u0442");
@@ -112,20 +117,20 @@ public class Form2 {
 
 			}
 		});
-		SetLightPlane.setBounds(456, 77, 125, 23);
+		SetLightPlane.setBounds(370, 169, 136, 23);
 		frame.getContentPane().add(SetLightPlane);
 
 		Number = new JTextField();
-		Number.setBounds(477, 186, 86, 28);
+		Number.setBounds(476, 212, 86, 28);
 		frame.getContentPane().add(Number);
 
 		JLabel label = new JLabel("\u041C\u0435\u0441\u0442\u043E");
-		label.setBounds(419, 193, 46, 14);
+		label.setBounds(420, 220, 46, 14);
 		frame.getContentPane().add(label);
 
 		final JPanel panel_2 = new JPanel();
 		
-		panel_2.setBounds(417, 263, 204, 143);
+		panel_2.setBounds(404, 285, 204, 143);
 		frame.getContentPane().add(panel_2);
 
 		JButton Get = new JButton("\u0417\u0430\u0431\u0440\u0430\u0442\u044C");
@@ -144,9 +149,40 @@ public class Form2 {
 
 			}
 		});
-		Get.setBounds(474, 227, 89, 23);
+		Get.setBounds(462, 249, 89, 23);
 		frame.getContentPane().add(Get);
-	}
+	
+	
+	final JList list = new JList(elements);
+		list.setBounds(464, 21, 99, 90);
+		frame.getContentPane().add(list);
+		
+		JButton btnUp = new JButton(">>");
+		btnUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				aerodrome.levelUp();
+				 				list.setSelectedIndex(aerodrome.getCurrentLevel());
+				 				panel.repaint();
+			}
+		});
+		btnUp.setBounds(543, 117, 63, 23);
+		frame.getContentPane().add(btnUp);
+		
+		JButton btnDown = new JButton("<<");
+		btnDown.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				aerodrome.levelDown();
+				 				list.setSelectedIndex(aerodrome.getCurrentLevel());
+				 				panel.repaint();
+			}
+		});
+		btnDown.setBounds(423, 118, 73, 23);
+		frame.getContentPane().add(btnDown);
+		
+		JLabel label_1 = new JLabel("Уровни");
+		label_1.setBounds(492, 3, 46, 14);
+		frame.getContentPane().add(label_1);
+}
 
 	private boolean checkPlace(String str) {
 		try {

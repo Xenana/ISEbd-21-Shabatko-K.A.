@@ -2,6 +2,7 @@ package tpL2;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import tpL2.ClassArray;
 import tpL2.ITransport;
@@ -11,22 +12,44 @@ public class Aerodrome {
 	ClassArray<ITransport> parking;
 	 
  	int countPlaces = 20;
+ 	ArrayList<ClassArray<ITransport>> parkingStages;
  	int placeSizeWidth = 210;
  	int placeSizeHeight = 80;
+ 	int currentLevel;
  	 
- 	public Aerodrome()
+ 	public Aerodrome(int countStages)
  	{
  		parking = new ClassArray<ITransport>(countPlaces, null);
+ 		parkingStages = new ArrayList<ClassArray<ITransport>>(countStages);
+ 		for(int i=0;i<countStages;i++){
+ 			parkingStages.add(new ClassArray<ITransport>(countPlaces, null));
+ 		}
+ 	}
+ 	
+ 	public int getCurrentLevel(){
+ 		return currentLevel;
+ 	}
+ 	
+ 	public void levelUp(){
+ 		if (currentLevel + 1 < parkingStages.size()){
+ 			currentLevel++;
+ 		}
+ 	}
+ 	
+ 	public void levelDown(){
+ 		if(currentLevel>0){
+ 			currentLevel--;
+ 		}
  	}
  	 
  	 	public int PutPlaneInParking(ITransport plane)
  	 	{
- 	 		return parking.plus(parking, plane);
+ 	 		return parkingStages.get(currentLevel).plus(parkingStages.get(currentLevel), plane);
  	 	}
  	 
  	 	public ITransport GetPlaneInParking(int ticket)
  	 	{
- 	 		return parking.minus(parking, ticket);
+ 	 		return parkingStages.get(currentLevel).minus(parkingStages.get(currentLevel), ticket);
  	 	}
  	 
  	 	public void Draw(Graphics g,int width,int height)
@@ -34,7 +57,7 @@ public class Aerodrome {
  	 		DrawMarking(g);
  	 		for(int i = 0; i < countPlaces; i++)
  	 		{
- 	 			ITransport plane = parking.getObject(i);
+ 	 			ITransport plane = parkingStages.get(currentLevel).getObject(i);
  	 			if (plane != null)
  	 			{
  	 				plane.setPosition(5 + i / 5 * placeSizeWidth + 8, i % 5 * placeSizeHeight + 35);
